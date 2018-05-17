@@ -1,24 +1,25 @@
 import React, {Component} from 'react'
 
+
 export default class Article extends Component{
   constructor(props){
     super(props)
 
-    this.state = {
-      isOpen: false,
+    this.state ={
+      isOpen: false
     }
   }
   render(){
     const {article} = this.props
     const {isOpen} = this.state
     return(
-      <div>
+      <article>
         <h1>{article.title}</h1>
         <button onClick={this.handleToggleOpen}>
-          {isOpen ? 'close' : 'open'}
+          {isOpen ? 'Close' : 'Open'}
         </button>
         {this.getBody()}
-      </div>
+      </article>
     )
   }
 
@@ -34,6 +35,8 @@ export default class Article extends Component{
     })
   }
 }
+
+
 
 
 
