@@ -14,6 +14,7 @@ export default class Article extends Component{
     const {isOpen} = this.state
     return(
       <article>
+        <p>Intro text</p>
         <h1>{article.title}</h1>
         <button onClick={this.handleToggleOpen}>
           {isOpen ? 'Close' : 'Open'}
