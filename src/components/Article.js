@@ -1,39 +1,42 @@
 import React, {Component} from 'react'
-import PropTypes from 'prop-types'
 import CommentList from './CommentList'
-import toggleOpenBtn from '../decorators/toggleOpenBtn'
 
 class Article extends Component{
-  static propTypes = {
-    article: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
-      text: PropTypes.string
-    }).isRequired
+  constructor(props){
+    super(props)
+
+    this.state ={
+      isOpen: false
+    }
   }
   render(){
-    const {article, isOpen, handleToggle} = this.props
-
+    const {article} = this.props
+    const {isOpen} = this.state
     return(
-      <div>
-        <h2>{article.title}</h2>
-        <button onClick={handleToggle}>
+      <section>
+        <h4>{article.title}</h4>
+        <button onClick={this.handleToggleOpen}>
           {isOpen ? 'Close text' : 'Open text'}
         </button>
         {this.getBody()}
-      </div>
+      </section>
     )
   }
   getBody(){
-    const {article, isOpen} = this.props
-    if(!isOpen) return null
+    const {article} = this.props
+    if(!this.state.isOpen) return null
     return(
-      <div>
+      <section>
         {article.text}
         <CommentList comments = {article.comments}/>
-      </div>
+      </section>
     )
+  }
+  handleToggleOpen = () => {
+    this.setState({
+      isOpen: !this.state.isOpen
+    })
   }
 }
 
-export default toggleOpenBtn(Article)
+export default Article
